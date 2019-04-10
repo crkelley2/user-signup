@@ -52,7 +52,7 @@ def signup():
     
     #if nameError or passwordError or verify_passwordError or emailError:
 
-        #content = #need to build redirect form with error messages in format
+        #return content = #need to build redirect form with error messages in format
 
 
 @app.route("/signup", methods=['GET'])
@@ -65,8 +65,6 @@ def home_page():
 @app.route("/")
 def index():
     return render_template('home_page.html')
-
-    #need to solve formating problem with form
 
 
 app.run()
