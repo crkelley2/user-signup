@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, redirect, render_template
 import cgi
 import os
 
@@ -7,6 +7,7 @@ app.config['DEBuG'] = True
 
 @app.route("/signup", methods=['POST'])
 def signup():
+
     name = request.form['name']
     password = request.form['password']
     verify_password = request.form['verify_password']
@@ -46,20 +47,20 @@ def signup():
                 hasPeriod = True
                 countPeriod += 1
 
-        if (not hasAt) or (countAt > 1) or (not hasPeriod) or (countPeriod > 1):
+        if (not hasAt) or (countAt > 1) or (not hasPeriod) or (countPeriod > 1) or (len(email) < 3) or (len(email) > 20) or (" " in email):
             emailError = "Not a valid email"
 
     
-    #if nameError or passwordError or verify_passwordError or emailError:
+    if nameError or passwordError or verify_passwordError or emailError:
+        return render_template("home_page.html", name=name, nameError=nameError, password="", passwordError=passwordError, verify_password="", verify_passwordError=verify_passwordError, email=email, emailError=emailError)
 
-        #return content = #need to build redirect form with error messages in format - check solutions code.
-
+    else:
+        return render_template("welcome_page.html", name=name)
 
 @app.route("/signup", methods=['GET'])
 def home_page():
     return render_template('home_page.html')    
-    
-    #need to build string to display signup form??
+
 
 
 @app.route("/")
