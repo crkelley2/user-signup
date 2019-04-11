@@ -52,7 +52,7 @@ def signup():
     
     #if nameError or passwordError or verify_passwordError or emailError:
 
-        #return content = #need to build redirect form with error messages in format
+        #return content = #need to build redirect form with error messages in format - check solutions code.
 
 
 @app.route("/signup", methods=['GET'])
