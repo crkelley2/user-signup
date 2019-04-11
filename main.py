@@ -52,7 +52,7 @@ def signup():
 
     
     if nameError or passwordError or verify_passwordError or emailError:
-        return render_template("home_page.html", name=name, nameError=nameError, password="", passwordError=passwordError, verify_password="", verify_passwordError=verify_passwordError, email=email, emailError=emailError)
+        return render_template("home_page.html", title="SignUp", name=name, nameError=nameError, password="", passwordError=passwordError, verify_password="", verify_passwordError=verify_passwordError, email=email, emailError=emailError)
 
     else:
         return redirect('/welcome?name={0}'.format(name))
@@ -60,17 +60,16 @@ def signup():
 @app.route("/welcome")
 def valid_signup():
     name = request.args.get('name')
-    return render_template("welcome_page.html", name=name)
+    return render_template("welcome_page.html", title="Welcome", name=name)
 
 @app.route("/signup", methods=['GET'])
 def home_page():
-    return render_template('home_page.html')    
-
+    return render_template('home_page.html', title="SignUp")    
 
 
 @app.route("/")
 def index():
-    return render_template('home_page.html')
+    return render_template('home_page.html', title="SignUp")
 
 
 app.run()
