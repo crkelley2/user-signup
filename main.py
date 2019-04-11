@@ -55,7 +55,12 @@ def signup():
         return render_template("home_page.html", name=name, nameError=nameError, password="", passwordError=passwordError, verify_password="", verify_passwordError=verify_passwordError, email=email, emailError=emailError)
 
     else:
-        return render_template("welcome_page.html", name=name)
+        return redirect('/welcome?name={0}'.format(name))
+
+@app.route("/welcome")
+def valid_signup():
+    name = request.args.get('name')
+    return render_template("welcome_page.html", name=name)
 
 @app.route("/signup", methods=['GET'])
 def home_page():
